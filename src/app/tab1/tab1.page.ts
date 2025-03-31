@@ -14,6 +14,7 @@ export class Tab1Page {
   sesionesCompletadas = 0;
   intervalo: any;
   esTrabajo = true;
+nombreTarea: any;
 
   agregarTarea() {
     this.tareas.push({ nombre: '', tiempo: 0 });
@@ -26,11 +27,17 @@ export class Tab1Page {
     this.sesionesCompletadas = 0;
     this.iniciarSesionTrabajo();
   }
+  pausarPomodoro() {
+    clearInterval(this.intervalo);
+    this.temporizadorActivo = false;
+  }
+  
 
   iniciarSesionTrabajo() {
-    if (this.sesionesCompletadas < 4) {
+    if (this.sesionesCompletadas < 1) {
       this.esTrabajo = true;
-      this.tiempoRestante = 25 * 60 * 1000; // 25 minutos
+      // this.tiempoRestante = 25 * 60 * 1000; // 25 minutos
+      this.tiempoRestante = 1 * 60 * 1000; // 30 minutos
       this.temporizadorActivo = true;
       this.contarTiempo(() => {
         this.preguntarContinuar = true;
@@ -41,16 +48,23 @@ export class Tab1Page {
   }
 
   iniciarDescansoCorto() {
-    this.tiempoRestante = 5 * 60 * 1000; // 5 minutos
+    this.esTrabajo = false;
+    // this.tiempoRestante = 5 * 60 * 1000; // 5 minutos
+    this.tiempoRestante = 0.5 * 60 * 1000; // 30 minutos
     this.contarTiempo(() => {
+      this.preguntarContinuar = true;
       this.sesionesCompletadas++;
       this.iniciarSesionTrabajo();
     });
   }
 
   iniciarDescansoLargo() {
-    this.tiempoRestante = 30 * 60 * 1000; // 30 minutos
+    this.esTrabajo = false;
+    // this.tiempoRestante = 30 * 60 * 1000; // 30 minutos
+    this.tiempoRestante = 2 * 60 * 1000; // 30 minutos
     this.contarTiempo(() => {
+      this.preguntarContinuar = true;
+
       this.sesionesCompletadas = 0; // Reiniciar ciclo
     });
   }
@@ -77,7 +91,7 @@ export class Tab1Page {
   }
 
   agregarTiempoExtra() {
-    this.tiempoRestante += 55 * 60 * 1000; // Agrega 55 minutos
+    this.tiempoRestante += 5 * 60 * 1000; // Agrega 55 minutos
     this.preguntarContinuar = false;
   }
   

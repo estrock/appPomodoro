@@ -1,4 +1,4 @@
-<ion-header [translucent]="true">
+<!-- <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
       Tab 2
@@ -14,4 +14,61 @@
   </ion-header>
 
   <app-explore-container name="Tab 2 page"></app-explore-container>
+</ion-content> -->
+
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>Pomodoro Timer</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-item>
+    <ion-label position="floating">Tarea actual</ion-label>
+    <ion-input [(ngModel)]="taskName" [disabled]="isPomodoroActive"></ion-input>
+  </ion-item>
+
+  <div class="timer">{{ formatTime(timeLeft) }}</div>
+  <div class="session-type">{{ sessionType }}</div>
+
+
+  <ion-button expand="full" (click)="startTimer()" [disabled]="isRunning || !taskName">Iniciar</ion-button>
+  <ion-button expand="full" (click)="pauseTimer()" [disabled]="!isRunning">Pausar</ion-button>
+  <ion-button expand="full" (click)="stopTimer()">Detener</ion-button>
+  <ion-button expand="full" (click)="nextCycle()">Siguiente ciclo</ion-button>
+</ion-content> -->
+
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Pomodoro Timer</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div *ngIf="!isPomodoroActive">
+    <ion-item>
+      <ion-label position="floating">Duración sesión de trabajo (min)</ion-label>
+      <ion-input type="number" [(ngModel)]="workSession"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Duración descanso corto (min)</ion-label>
+      <ion-input type="number" [(ngModel)]="shortBreakSession"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Duración descanso largo (min)</ion-label>
+      <ion-input type="number" [(ngModel)]="longBreakSession"></ion-input>
+    </ion-item>
+  </div>
+  <ion-item>
+    <ion-label position="floating">Tarea actual</ion-label>
+    <ion-input [(ngModel)]="taskName" [disabled]="isPomodoroActive"></ion-input>
+  </ion-item>
+
+  <div class="timer">{{ formatTime(timeLeft) }}</div>
+  <div class="session-type">{{ sessionType }}</div>
+
+  <ion-button expand="full" (click)="startTimer()" [disabled]="isRunning || !taskName">Iniciar</ion-button>
+  <ion-button expand="full" (click)="pauseTimer()" [disabled]="!isRunning">Pausar</ion-button>
+  <ion-button expand="full" (click)="stopTimer()">Detener</ion-button>
+  <ion-button expand="full" (click)="nextCycle()">Siguiente ciclo</ion-button>
 </ion-content>

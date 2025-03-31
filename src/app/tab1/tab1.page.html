@@ -38,15 +38,24 @@
     <ion-input [(ngModel)]="tarea.tiempo" type="number" placeholder="Tiempo en minutos" style="max-width: 300px;"></ion-input>
   </div>
 
-  <ion-button (click)="mostrarLista()">Lista</ion-button>
-  <ion-button (click)="iniciarPomodoro()">start</ion-button>
+  <div  style="display: flex; flex-direction: column; align-items: center; margin: 10px;">
+    <ion-input [(ngModel)]="nombreTarea" [disabled]="temporizadorActivo" placeholder="Nombre de la tarea" style="max-width: 300px;"></ion-input>
+    <!-- <ion-input [(ngModel)]="tarea.tiempo" type="number" placeholder="Tiempo en minutos" style="max-width: 300px;"></ion-input> -->
+  </div>
 
-  <div *ngIf="temporizadorActivo" style="text-align: center; margin-top: 20px;">
+  <!-- <ion-button (click)="mostrarLista()">Lista</ion-button> -->
+  <!-- <ion-button *ngIf="nombreTarea?.trim()" (click)="iniciarPomodoro()">start</ion-button> -->
+  <ion-button *ngIf="nombreTarea?.trim()" (click)="iniciarPomodoro()" [disabled]="temporizadorActivo">Start</ion-button>
+  <ion-button (click)="pausarPomodoro()" *ngIf="temporizadorActivo">Pause</ion-button>
+
+
+  <!-- <div *ngIf="temporizadorActivo" style="text-align: center; margin-top: 20px;"> -->
+  <div  style="text-align: center; margin-top: 20px;">
     <h2>{{ tiempoRestante | date:'mm:ss' }}</h2>
     <p>{{ esTrabajo ? 'Sesión de Trabajo' : 'Sesión de Descanso' }}</p>
     <p *ngIf="preguntarContinuar">¿Estás listo para continuar con la siguiente sesión o necesitas más tiempo?</p>
     <ion-button *ngIf="preguntarContinuar" (click)="continuarSesion()">Continuar</ion-button>
-    <ion-button *ngIf="preguntarContinuar" (click)="pausarSesion()">Más tiempo</ion-button>
+    <ion-button *ngIf="preguntarContinuar" (click)="agregarTiempoExtra()">Más tiempo</ion-button>
   </div>
   
 </ion-content>
