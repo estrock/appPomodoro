@@ -64,11 +64,39 @@
     <ion-input [(ngModel)]="taskName" [disabled]="isPomodoroActive"></ion-input>
   </ion-item>
 
-  <div class="timer">{{ formatTime(timeLeft) }}</div>
+  <!-- <div class="timer">{{ formatTime(timeLeft) }}</div> -->
+  <div class="timer">{{ formatTime(tiempo) }} / {{this.cuanto}}</div>
   <div class="session-type">{{ sessionType }}</div>
 
   <ion-button expand="full" (click)="startTimer()" [disabled]="isRunning || !taskName">Iniciar</ion-button>
   <ion-button expand="full" (click)="pauseTimer()" [disabled]="!isRunning">Pausar</ion-button>
   <ion-button expand="full" (click)="stopTimer()">Detener</ion-button>
   <ion-button expand="full" (click)="nextCycle()">Siguiente ciclo</ion-button>
+
+  <!-- Tabla de tareas registradas -->
+  <ion-card *ngIf="tareas.length > 0">
+    <ion-card-header>
+      <ion-card-title>Tareas Registradas</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <table class="task-table">
+        <thead>
+          <tr>
+            <th>Nombre Tarea</th>
+            <th>Fecha Inicio</th>
+            <th>Fecha Final</th>
+            <th>Duración (min)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let tarea of tareas">
+            <td>{{ tarea.nombreTarea }}</td>
+            <td>{{ tarea.fechaInicio }}</td>
+            <td>{{ tarea.fechaFinal }}</td>
+            <td>{{ tarea.duracion }} minutos</td>
+          </tr>
+        </tbody>
+      </table>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

@@ -3,4 +3,55 @@
     text-align: center;
     margin: 20px 0;
   }
-  
+/* Estilos para la tabla de tareas */
+.task-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+
+.task-table th,
+.task-table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.task-table th {
+  background-color: #4e77e9; /* Color verde para los encabezados */
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.task-table td {
+  font-size: 14px;
+  color: #333;
+}
+
+.task-table tr:nth-child(even) {
+  background-color: #f9f9f9; /* Color de fondo alterno para las filas */
+}
+
+.task-table tr:hover {
+  background-color: #f1f1f1; /* Color de fondo al pasar el cursor sobre una fila */
+  cursor: pointer;
+}
+
+.task-table td {
+  word-wrap: break-word; /* Evita que el texto largo desborde */
+}
+
+ion-card {
+  margin-top: 20px;
+  padding: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+ion-card-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #ffffff;
+}
